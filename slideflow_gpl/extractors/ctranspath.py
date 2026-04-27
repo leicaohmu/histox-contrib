@@ -610,6 +610,7 @@ class CTransPathFeatures(TorchFeatureExtractor):
     """
 
     tag = 'ctranspath'
+    weights_hash = '6eb0e3a929f5ae7c13a7e76b531d0ee3f4718049'
     license = """GNU General Public License v3.0"""
     citation = """
 @{wang2022,

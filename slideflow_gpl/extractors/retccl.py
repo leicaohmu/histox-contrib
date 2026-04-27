@@ -295,6 +295,7 @@ class RetCCLFeatures(TorchFeatureExtractor):
     """
 
     tag = 'retccl'
+    weights_hash = 'f92f10fb85fc742c40514726c3e4cbdfd7942963'
     license = "GNU General Public License v3.0"
     citation = """
 @article{WANG2023102645,
