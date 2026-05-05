@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="histox-contrib",
-    version="0.1.1",
+    version="0.1.2",
     author="Lei Cao",
     author_email="caolei@hrbmu.edu.cn",
     description="Community contributions for HisToX",
