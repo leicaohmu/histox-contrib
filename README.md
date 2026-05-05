@@ -1,6 +1,6 @@
 # histox-contrib
 
-**Community-contributed GPL-3 extensions for [HistoX](https://github.com/你的用户名/histox).**
+**Community-contributed GPL-3 extensions for [HistoX](https://github.com/leicaohmu/histox).**
 
 This package provides additional deep learning tools for HistoX that are licensed under the
 GNU General Public License v3 (GPL-3). It is distributed separately from the main HistoX
