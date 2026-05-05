@@ -19,6 +19,8 @@
 import sys
 import pkgutil
 
+__version__ = "0.1.1"
+
 def register_extras():
     # Register the additional pretrained feature extractors
     from . import extractors
