@@ -1,78 +1,103 @@
-![slideflow logo](https://github.com/jamesdolezal/slideflow/raw/master/docs-source/pytorch_sphinx_theme/images/slideflow-banner.png)
+# histox-contrib
 
-[![Python application](https://github.com/slideflow/slideflow-gpl/actions/workflows/python-app.yml/badge.svg?branch=master)](https://github.com/slideflow/slideflow-gpl/actions/workflows/python-app.yml)
-[![PyPI version](https://badge.fury.io/py/slideflow-gpl.svg)](https://badge.fury.io/py/slideflow-gpl)
-| [ArXiv](https://arxiv.org/abs/2304.04142) | [Docs](https://slideflow.dev) | [Cite](#reference)
+**Community-contributed GPL-3 extensions for [HistoX](https://github.com/你的用户名/histox).**
 
+This package provides additional deep learning tools for HistoX that are licensed under the
+GNU General Public License v3 (GPL-3). It is distributed separately from the main HistoX
+package to keep the core library free from GPL restrictions.
 
-**Slideflow-GPL brings additional digital pathology deep learning tools to Slideflow, under the GPL-3 license.**
+> Based on [slideflow-gpl](https://github.com/slideflow/slideflow-gpl) by James Dolezal,
+> adapted for HistoX.
 
-Slideflow is designed to provide an accessible, easy-to-use interface for developing state-of-the-art pathology models. While the core Slideflow package integrates with a wide range of cutting-edge methods and models, the variability in licensing practices necessitates that some functionality is distributed through separate add-on packages. **Slideflow-GPL** extends Slideflow with additional tools available under the GPL-3 license, ensuring that the core package remains as open and permissive as possible.
-
-## Requirements
-- Python >= 3.8
-- [Slideflow](https://github.com/jamesdolezal/slideflow) >= 3.0
-- [PyTorch](https://pytorch.org/) >= 1.9
+---
 
 ## Installation
-Slideflow-GPL is easily installed via PyPI and will automatically integrate with Slideflow.
 
+```bash
+pip install histox-contrib
 ```
-pip install slideflow-gpl
+
+Or install from source:
+
+```bash
+git clone https://github.com/你的用户名/histox-contrib.git
+cd histox-contrib
+pip install -e .
 ```
+
+> **Note:** `histox` must be installed first.
+>
+> ```bash
+> pip install histox
+> ```
+
+---
 
 ## Features
-- **RetCCL**, a pretrained feature extractor ([GitHub](https://github.com/Xiyue-Wang/RetCCL) | [Paper](https://www.sciencedirect.com/science/article/abs/pii/S1361841522002730))
-- **CTransPath**, a pretrained feature extractor ([GitHub](https://github.com/Xiyue-Wang/TransPath) | [Paper](https://www.sciencedirect.com/science/article/abs/pii/S1361841522002043))
-- **CLAM**, a multiple-instance learning (MIL) model architecture ([GitHub](https://github.com/mahmoodlab/CLAM) | [Paper](https://www.nature.com/articles/s41551-020-00682-w))
 
-#### RetCCL & CTransPath
+| Module | Description |
+|--------|-------------|
+| **RetCCL** | Pretrained feature extractor (RetCCL) |
+| **CTransPath** | Pretrained feature extractor (CTransPath) |
+| **CLAM** | Clustering-constrained Attention Multiple Instance Learning |
 
-The RetCCL and CTransPath feature extractors are accessible using the [same interface](https://slideflow.dev/mil/#generating-features) all pretrained extractors utilize in Slideflow.
+---
 
-```python
-import slideflow as sf
+## Usage
 
-retccl = sf.build_feature_extractor('retccl')
-```
-
-Please see the [Slideflow documentation](https://slideflow.dev/mil/#generating-features) for additional information on how feature extractors can be deployed and used. 
-
-#### CLAM
-
-The CLAM architectures, `CLAM_SB`, `CLAM_SB`, `MIL_fc`, and `MIL_fc_mc` will be automatically available upon installation, and can be specified using the same `mil_config()` interface used for other MIL models in Slideflow.
+Once installed, `histox-contrib` automatically registers its components into HistoX
+via the plugin system. No manual import is required.
 
 ```python
-import slideflow as sf
-import slideflow.mil
+import histox as hx
 
-config = sf.mil.mil_config('clam_mb', epochs=20, lr=1e-4)
+# RetCCL and CTransPath are available after histox-contrib is installed
+extractor = hx.build_feature_extractor('retccl')
 ```
 
-Please see the [Slideflow docs](https://slideflow.dev/mil/) for more information on MIL models.
+---
 
 ## License
-This code is made available under the GPLv3 License.
 
-All three features made available in this repository - RetCCL, CTransPath, and CLAM - are licensed under GPLv3. However, please be aware that authors have stated their intent for these models to be used for non-commercial, academic purposes ([1](https://github.com/Xiyue-Wang/RetCCL), [2](https://github.com/Xiyue-Wang/TransPath), [3](https://github.com/mahmoodlab/CLAM)). 
+This project is licensed under the **GNU General Public License v3.0**.
+See [LICENSE](LICENSE) for details.
 
-## Reference
-If you find our work useful for your research, or if you use parts of this code, please consider citing as follows:
+This package is based on
+[slideflow-gpl](https://github.com/slideflow/slideflow-gpl)
+(Copyright 2024 James Dolezal), modified and adapted for HistoX.
 
-Dolezal, J.M., Kochanny, S., Dyer, E. et al. Slideflow: deep learning for digital histopathology with real-time whole-slide visualization. BMC Bioinformatics 25, 134 (2024). https://doi.org/10.1186/s12859-024-05758-x
+---
 
+## Citation
+
+If you use this package in your research, please cite the original works:
+
+**RetCCL:**
 ```
-@Article{Dolezal2024,
-    author={Dolezal, James M. and Kochanny, Sara and Dyer, Emma and Ramesh, Siddhi and Srisuwananukorn, Andrew and Sacco, Matteo and Howard, Frederick M. and Li, Anran and Mohan, Prajval and Pearson, Alexander T.},
-    title={Slideflow: deep learning for digital histopathology with real-time whole-slide visualization},
-    journal={BMC Bioinformatics},
-    year={2024},
-    month={Mar},
-    day={27},
-    volume={25},
-    number={1},
-    pages={134},
-    doi={10.1186/s12859-024-05758-x},
-    url={https://doi.org/10.1186/s12859-024-05758-x}
+@article{wang2023retccl,
+  title={RetCCL: Clustering-guided contrastive learning for whole-slide image retrieval},
+  author={Wang, Xiyue and others},
+  journal={Medical Image Analysis},
+  year={2023}
+}
+```
+
+**CTransPath:**
+```
+@article{wang2022ctranspath,
+  title={Transformer-based unsupervised contrastive learning for histopathological image classification},
+  author={Wang, Xiyue and others},
+  journal={Medical Image Analysis},
+  year={2022}
+}
+```
+
+**CLAM:**
+```
+@article{lu2021clam,
+  title={Data-efficient and weakly supervised computational pathology on whole-slide images},
+  author={Lu, Ming Y and others},
+  journal={Nature Biomedical Engineering},
+  year={2021}
 }
 ```

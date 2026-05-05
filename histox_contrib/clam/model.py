@@ -26,8 +26,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 from typing import Union, List, Optional, Callable
 
-from slideflow.model.torch_utils import get_device
-from slideflow.mil.models._utils import initialize_weights
+from histox.model.torch_utils import get_device
+from histox.mil.models._utils import initialize_weights
 
 # -----------------------------------------------------------------------------
 

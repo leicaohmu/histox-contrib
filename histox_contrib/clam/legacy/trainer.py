@@ -20,16 +20,16 @@
 
 import os
 import numpy as np
-import slideflow as sf
+import histox as sf
 from os.path import join, exists
 from typing import Union, List
-from slideflow import Dataset, log
-from slideflow.util import path_to_name
+from histox import Dataset, log
+from histox.util import path_to_name
 from os.path import join
 
-from slideflow.mil.train import _log_mil_params
-from slideflow.mil.eval import predict_mil, generate_attention_heatmaps
-from slideflow.mil.utils import _export_attention
+from histox.mil.train import _log_mil_params
+from histox.mil.eval import predict_mil, generate_attention_heatmaps
+from histox.mil.utils import _export_attention
 
 from ..config import LegacyCLAMTrainerConfig
 
@@ -47,13 +47,13 @@ def train_clam(
     **heatmap_kwargs
 ) -> None:
     """Train a CLAM model from layer activations exported with
-    :meth:`slideflow.project.generate_features_for_clam`.
+    :meth:`histox.project.generate_features_for_clam`.
 
     See :ref:`mil` for more information.
 
     Args:
-        train_dataset (:class:`slideflow.Dataset`): Training dataset.
-        val_dataset (:class:`slideflow.Dataset`): Validation dataset.
+        train_dataset (:class:`histox.Dataset`): Training dataset.
+        val_dataset (:class:`histox.Dataset`): Validation dataset.
         outcomes (str): Outcome column (annotation header) from which to
             derive category labels.
         bags (str): Either a path to directory with \*.pt files, or a list
@@ -67,7 +67,7 @@ def train_clam(
             in the ``outdir`` folder, where training history
             and the model will be saved.
         clam_args (optional): Namespace with clam arguments, as provided
-            by :func:`slideflow.clam.get_args`.
+            by :func:`histox.clam.get_args`.
         attention_heatmaps (bool): Generate attention heatmaps for slides.
             Defaults to False.
         interpolation (str, optional): Interpolation strategy for smoothing

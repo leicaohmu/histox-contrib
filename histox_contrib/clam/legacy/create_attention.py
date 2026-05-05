@@ -29,7 +29,7 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 
-from slideflow import log
+from histox import log
 from ..model import CLAM_MB, CLAM_SB
 from .utils import *
 from .utils.eval_utils import initiate_model as initiate_model

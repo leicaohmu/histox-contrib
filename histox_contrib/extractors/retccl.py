@@ -28,7 +28,7 @@ import torch.nn as nn
 from torch.nn import Parameter
 from huggingface_hub import hf_hub_download
 
-from slideflow.model.extractors._factory_torch import TorchFeatureExtractor
+from histox.model.extractors._factory_torch import TorchFeatureExtractor
 
 # -----------------------------------------------------------------------------
 
@@ -312,7 +312,7 @@ class RetCCLFeatures(TorchFeatureExtractor):
     def __init__(self, device=None, ckpt=None, **kwargs):
         super().__init__(**kwargs)
 
-        from slideflow.model import torch_utils
+        from histox.model import torch_utils
 
         self.device = torch_utils.get_device(device)
         self.model = ResNet50(
@@ -346,9 +346,9 @@ class RetCCLFeatures(TorchFeatureExtractor):
         """Return a dictionary of configuration parameters.
 
         These configuration parameters can be used to reconstruct the
-        feature extractor, using ``slideflow.build_feature_extractor()``.
+        feature extractor, using ``histox.build_feature_extractor()``.
 
         """
         return self._dump_config(
-            class_name=f'slideflow.model.extractors.retccl.{self.__class__.__name__}',
+            class_name=f'histox.model.extractors.retccl.{self.__class__.__name__}',
         )

@@ -28,7 +28,7 @@ import torch
 from typing import Union
 from scipy import stats
 from torch.utils.data import Dataset
-from slideflow import log
+from histox import log
 
 from ..utils import generate_split, nth
 

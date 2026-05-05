@@ -16,27 +16,21 @@
 # You should have received a copy of the GNU General Public License
 # along with Slideflow-GPL. If not, see <https://www.gnu.org/licenses/>.
 
-from .config import CLAMModelConfig, LegacyCLAMTrainerConfig
+import torch
 
-from slideflow.mil import register_model
+from histox.mil.data import BagDataset, EncodedDataset, MapDataset
 
+def build_clam_dataset(bags, targets, encoder, bag_size, max_bag_size=None, dtype=torch.float32):
+    assert len(bags) == len(targets)
 
-@register_model(config=CLAMModelConfig)
-def clam_sb():
-    from .model import CLAM_SB
-    return CLAM_SB
+    def _zip(bag, targets):
+        features, lengths = bag
+        return (features, targets.squeeze(), True), targets.squeeze()
 
-@register_model(config=CLAMModelConfig)
-def clam_mb():
-    from .model import CLAM_MB
-    return CLAM_MB
-
-@register_model(config=CLAMModelConfig)
-def mil_fc():
-    from .model import MIL_fc
-    return MIL_fc
-
-@register_model(config=CLAMModelConfig)
-def mil_fc_mc():
-    from .model import MIL_fc_mc
-    return MIL_fc_mc
+    dataset = MapDataset(
+        _zip,
+        BagDataset(bags, bag_size=bag_size, max_bag_size=max_bag_size, dtype=dtype),
+        EncodedDataset(encoder, targets),
+    )
+    dataset.encoder = encoder
+    return dataset

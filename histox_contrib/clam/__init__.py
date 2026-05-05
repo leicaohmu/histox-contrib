@@ -16,16 +16,27 @@
 # You should have received a copy of the GNU General Public License
 # along with Slideflow-GPL. If not, see <https://www.gnu.org/licenses/>.
 
-import sys
-import pkgutil
+from .config import CLAMModelConfig, LegacyCLAMTrainerConfig
 
-def register_extras():
-    # Register the additional pretrained feature extractors
-    from . import extractors
-    for submodule in pkgutil.iter_modules(extractors.__path__):
-        module = submodule.module_finder.find_spec(submodule.name).loader.load_module(submodule.name)
-        sys.modules[f'slideflow.model.extractors.{submodule.name}'] = module
+from histox.mil import register_model
 
-    # Register CLAM
-    from . import clam
-    sys.modules['slideflow.clam'] = clam
+
+@register_model(config=CLAMModelConfig)
+def clam_sb():
+    from .model import CLAM_SB
+    return CLAM_SB
+
+@register_model(config=CLAMModelConfig)
+def clam_mb():
+    from .model import CLAM_MB
+    return CLAM_MB
+
+@register_model(config=CLAMModelConfig)
+def mil_fc():
+    from .model import MIL_fc
+    return MIL_fc
+
+@register_model(config=CLAMModelConfig)
+def mil_fc_mc():
+    from .model import MIL_fc_mc
+    return MIL_fc_mc

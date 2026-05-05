@@ -19,7 +19,7 @@
 import numpy as np
 
 from typing import Union, List, Optional, Tuple, Any, TYPE_CHECKING
-from slideflow.mil import utils as mil_utils
+from histox.mil import utils as mil_utils
 
 if TYPE_CHECKING:
     import torch

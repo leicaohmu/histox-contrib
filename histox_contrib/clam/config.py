@@ -16,10 +16,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Slideflow-GPL. If not, see <https://www.gnu.org/licenses/>.
 
-import slideflow as sf
+import histox as sf
 from typing import Union, List, Tuple, Optional, TYPE_CHECKING
-from slideflow import log, errors, Dataset
-from slideflow.mil import MILModelConfig, TrainerConfig
+from histox import log, errors, Dataset
+from histox.mil import MILModelConfig, TrainerConfig
 
 if TYPE_CHECKING:
     import torch
@@ -292,7 +292,7 @@ class LegacyCLAMTrainerConfig(TrainerConfig):
             n_classes (int): Number of outcome classes. Defaults to None.
             micro_average (bool): Use micro averaging when calculate AUROC.
             **kwargs: All additional keyword arguments are passed to
-                :class:`slideflow.mil.CLAMModelConfig`.
+                :class:`histox.mil.CLAMModelConfig`.
         """
         for argname, argval in dict(locals()).items():
             if argname != 'kwargs':

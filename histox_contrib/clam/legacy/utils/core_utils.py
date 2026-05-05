@@ -30,7 +30,7 @@ from sklearn.metrics import auc as calc_auc
 from sklearn.metrics import roc_auc_score, roc_curve
 from sklearn.preprocessing import label_binarize
 
-from slideflow import log
+from histox import log
 from ...model import CLAM_MB, CLAM_SB, MIL_fc, MIL_fc_mc
 from ..datasets.dataset_generic import save_splits
 from ..utils import *

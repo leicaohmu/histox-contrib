@@ -23,7 +23,7 @@
 import os
 import torch
 from os.path import join
-from slideflow.util import path_to_name
+from histox.util import path_to_name
 
 from .dataset_generic import Generic_WSI_Classification_Dataset
 

@@ -30,8 +30,8 @@ import torch.nn.functional as F
 from sklearn.metrics import auc, roc_auc_score, roc_curve
 from sklearn.preprocessing import label_binarize
 
-from slideflow import log
-from slideflow.model.torch_utils import get_device
+from histox import log
+from histox.model.torch_utils import get_device
 from ...model import CLAM_MB, CLAM_SB, MIL_fc, MIL_fc_mc
 from ..utils import *
 from ..utils.core_utils import Accuracy_Logger

@@ -39,7 +39,7 @@ from timm.models.layers import _assert
 from timm.models.swin_transformer import window_partition, window_reverse
 from timm.models.vision_transformer import checkpoint_filter_fn
 
-from slideflow.model.extractors._factory_torch import TorchFeatureExtractor
+from histox.model.extractors._factory_torch import TorchFeatureExtractor
 
 # -----------------------------------------------------------------------------
 
@@ -625,7 +625,7 @@ class CTransPathFeatures(TorchFeatureExtractor):
     def __init__(self, device=None, **kwargs):
         super().__init__(**kwargs)
 
-        from slideflow.model import torch_utils
+        from histox.model import torch_utils
 
         self.device = torch_utils.get_device(device)
         self.model = _build_ctranspath_model()
@@ -650,9 +650,9 @@ class CTransPathFeatures(TorchFeatureExtractor):
         """Return a dictionary of configuration parameters.
 
         These configuration parameters can be used to reconstruct the
-        feature extractor, using ``slideflow.build_feature_extractor()``.
+        feature extractor, using ``histox.build_feature_extractor()``.
 
         """
         return self._dump_config(
-            class_name=f'slideflow.model.extractors.ctranspath.{self.__class__.__name__}',
+            class_name=f'histox.model.extractors.ctranspath.{self.__class__.__name__}',
         )

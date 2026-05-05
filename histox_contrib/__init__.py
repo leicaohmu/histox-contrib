@@ -16,15 +16,16 @@
 # You should have received a copy of the GNU General Public License
 # along with Slideflow-GPL. If not, see <https://www.gnu.org/licenses/>.
 
-from slideflow.model.extractors import register_torch
+import sys
+import pkgutil
 
+def register_extras():
+    # Register the additional pretrained feature extractors
+    from . import extractors
+    for submodule in pkgutil.iter_modules(extractors.__path__):
+        module = submodule.module_finder.find_spec(submodule.name).loader.load_module(submodule.name)
+        sys.modules[f'histox.model.extractors.{submodule.name}'] = module
 
-@register_torch
-def ctranspath(**kwargs):
-    from .ctranspath import CTransPathFeatures
-    return CTransPathFeatures(**kwargs)
-
-@register_torch
-def retccl(**kwargs):
-    from .retccl import RetCCLFeatures
-    return RetCCLFeatures(**kwargs)
+    # Register CLAM
+    from . import clam
+    sys.modules['histox.clam'] = clam
